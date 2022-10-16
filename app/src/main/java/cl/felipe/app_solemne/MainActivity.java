@@ -31,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
         if (user != null) {
             System.out.println(user.getUsername() + " " + user.getPassword());
             message("Usuario existe");
+            Intent reservationsActivity = new Intent(this, ReservationsActivity.class);
+            reservationsActivity.putExtra("user", user.getUsername());
+            startActivity(reservationsActivity);
         } else {
             message("Usuario no existe");
         }

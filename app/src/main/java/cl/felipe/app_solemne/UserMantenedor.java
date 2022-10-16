@@ -10,12 +10,22 @@ import androidx.annotation.Nullable;
 public class UserMantenedor extends SQLiteOpenHelper {
 
     private static final int DB_VERSION = 1;
-    private static final String DB_NAME = "app-solemne.db";
+    private static final String DB_NAME = "booksapp.db";
     private final String USER_TABLE = "CREATE TABLE users (" +
             " username TEXT PRIMARY KEY," +
             " password TEXT," +
             " firstname TEXT," +
             " lastname TEXT)";
+    private final String BOOK_TABLE = "CREATE TABLE books (" +
+            " title TEXT PRIMARY KEY," +
+            " author TEXT," +
+            " editorial TEXT)";
+
+    private final String RESERVATION_TABLE = "CREATE TABLE reservations (" +
+            " userId TEXT," +
+            " bookId TEXT," +
+            " FOREIGN KEY(bookId) REFERENCES books(title), " +
+            " FOREIGN KEY(userId) REFERENCES users(username) )";
 
     public UserMantenedor(@Nullable Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -23,7 +33,13 @@ public class UserMantenedor extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
+
         sqLiteDatabase.execSQL(USER_TABLE);
+        sqLiteDatabase.execSQL(BOOK_TABLE);
+        sqLiteDatabase.execSQL(RESERVATION_TABLE);
+        sqLiteDatabase.execSQL("" +
+                "INSERT INTO books(title, author, editorial) VALUES('El Principito'," +
+                "'Antoine de Saint-Exupéry', 'Océano')");
     }
 
     @Override
