@@ -6,6 +6,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import java.util.List;
+
 public class ReservationsTransaccion  {
 
     private ReservationMantenedor reservationMantenedor;
@@ -16,10 +18,16 @@ public class ReservationsTransaccion  {
 
     public void makeReservation(String bookId, String username) throws ReservationException {
 
-        Reservation reservation = reservationMantenedor.findByBookId(bookId);
+        List<Reservation> reservationList = reservationMantenedor.findAllByBookId(bookId);
 
-        if (reservation != null) {
-            throw new ReservationException("El libro ya se encuentra reservado");
+        for (Reservation reservation : reservationList) {
+            System.out.println(username);
+            System.out.println("Username " + reservation.getUserId() + " Libro " + reservation.getBookId());
+            if (reservation != null && reservation.getUserId().equals(username)) {
+                System.out.println("lanzando error");
+                throw new ReservationException("El libro ya se encuentra reservado");
+            }
+
         }
         reservationMantenedor.createReservation(username, bookId);
 

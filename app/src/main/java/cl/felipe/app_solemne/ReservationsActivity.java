@@ -29,15 +29,15 @@ public class ReservationsActivity extends AppCompatActivity {
 
         Spinner spinner = findViewById(R.id.spinnerBooks);
 
-        List<Book> books = bookMantenedor.findAll();
+        List<Libro> books = bookMantenedor.findAll();
         if (books != null && books.size() != 0) {
 
             int totalBooks = books.size();
 
             String data[] = new String[totalBooks];
             int i = 0;
-            for (Book b : books) {
-                data[i] = b.getTitle();
+            for (Libro b : books) {
+                data[i] = b.getName();
                 i++;
             }
 
@@ -53,13 +53,13 @@ public class ReservationsActivity extends AppCompatActivity {
 
     public void makeReservation(View v) {
 
-        String userId = getIntent().getStringExtra("user");
-
-        Spinner spinner = findViewById(R.id.spinnerBooks);
-        String bookTitle = (String) spinner.getSelectedItem();
         try {
+            String userId = getIntent().getStringExtra("user");
+            System.out.println("User id " + userId);
+            Spinner spinner = findViewById(R.id.spinnerBooks);
+            String bookTitle = (String) spinner.getSelectedItem();
             reservationsTransaccion.makeReservation(bookTitle, userId);
-        message("Libro reservado");
+            message("Libro reservado");
         } catch (ReservationException e) {
             e.printStackTrace();
             message("El libro ya se encuentra reservado");

@@ -14,7 +14,7 @@ public class ReservationMantenedor extends SQLiteOpenHelper {
 
 
     private static final int DB_VERSION = 1;
-    private static final String DB_NAME = "booksapp.db";
+    private static final String DB_NAME = "books.db";
 
 
     public ReservationMantenedor(@Nullable Context context) {
@@ -49,20 +49,27 @@ public class ReservationMantenedor extends SQLiteOpenHelper {
         return reservations;
     }
 
-    public Reservation findByBookId(String id) {
+    public List<Reservation> findAllByBookId(String id) {
 
         SQLiteDatabase sqLiteDatabase = getWritableDatabase();
 
-        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM reservations WHERE bookId = '" + id +"';", null);
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT userId, bookId FROM reservations WHERE bookId = '" + id +"';", null);
 
+        List<Reservation> reservationList = new ArrayList<>();
         if (!cursor.moveToFirst()) {
             return null;
         }
+        do {
+            String userId = cursor.getString(0);
+            String bookId = cursor.getString(1);
+            Reservation r = new Reservation(userId, bookId);
+            reservationList.add(r);
 
-        String userId = cursor.getString(0);
-        String bookId = cursor.getString(1);
+        } while (cursor.moveToNext());
 
-        return new Reservation(userId, bookId);
+        cursor.close();
+        sqLiteDatabase.close();
+        return reservationList;
     }
 
     public void createReservation(String username, String bookId) {
@@ -72,9 +79,10 @@ public class ReservationMantenedor extends SQLiteOpenHelper {
             sqLiteDatabase.execSQL("INSERT INTO reservations(userId, bookId) values(" +
                     "'"+ username+ "'," +
                     "'"+ bookId+ "')");
+            sqLiteDatabase.close();
 
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
 
     }

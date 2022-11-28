@@ -13,7 +13,7 @@ import java.util.List;
 public class BookMantenedor extends SQLiteOpenHelper {
 
     private static final int DB_VERSION = 1;
-    private static final String DB_NAME = "booksapp.db";
+    private static final String DB_NAME = "books.db";
 
 
     public BookMantenedor(@Nullable Context context) {
@@ -32,18 +32,17 @@ public class BookMantenedor extends SQLiteOpenHelper {
 
     }
 
-    public Book findByTitle(String title) {
+    public Libro findByTitle(String title) {
         SQLiteDatabase sqLiteDatabase = getWritableDatabase();
 
-        Book book = null;
+        Libro book = null;
 
         Cursor auxCursor = sqLiteDatabase.rawQuery("SELECT * FROM books WHERE title = '" + title +"';", null);
         if (!auxCursor.moveToFirst()) {
             return null;
         }
-        book = new Book();
-        book.setTitle(auxCursor.getString(0));
-        book.setAuthor(auxCursor.getString(1));
+        book = new Libro();
+        book.setName(auxCursor.getString(0));
         book.setEditorial(auxCursor.getString(2));
 
         auxCursor.close();
@@ -52,11 +51,11 @@ public class BookMantenedor extends SQLiteOpenHelper {
         return book;
     }
 
-    public List<Book> findAll() {
+    public List<Libro> findAll() {
         try {
             SQLiteDatabase sqLiteDatabase = getWritableDatabase();
 
-            List<Book> books = new ArrayList<>();
+            List<Libro> books = new ArrayList<>();
 
             Cursor auxCursor = sqLiteDatabase.rawQuery("SELECT * FROM books;", null);
             if (!auxCursor.moveToFirst()) {
@@ -64,9 +63,8 @@ public class BookMantenedor extends SQLiteOpenHelper {
             }
 
             do {
-                Book book = new Book();
-                book.setTitle(auxCursor.getString(0));
-                book.setAuthor(auxCursor.getString(1));
+                Libro book = new Libro();
+                book.setName(auxCursor.getString(0));
                 book.setEditorial(auxCursor.getString(2));
                 books.add(book);
 

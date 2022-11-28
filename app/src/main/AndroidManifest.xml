@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="cl.felipe.app_solemne">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,7 +15,44 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Appsolemne"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".ActivityConfigSensor"
+            android:exported="false" />
+        <activity
+            android:name=".MenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".OpinionMantenedorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RecomendacionMantenedorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EditorialMantenedorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PaisMantenedorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ReclamoMantenedorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ReservaMantenedorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CategoriaMantenedorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AutorMantenedorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LibroMantenedorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".BookMantenedor"
+            android:exported="false" />
         <activity
             android:name=".ReservationListActivity"
             android:exported="false" />

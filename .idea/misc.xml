@@ -3,8 +3,20 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/layout/activity_autor_mantenedor.xml" value="0.25523860765540085" />
+        <entry key="app/src/main/res/layout/activity_book_mantenedor.xml" value="0.2517977507218071" />
+        <entry key="app/src/main/res/layout/activity_book_mantenedor2.xml" value="0.19429347826086957" />
+        <entry key="app/src/main/res/layout/activity_categoria_mantenedor.xml" value="0.38143350352411687" />
+        <entry key="app/src/main/res/layout/activity_editorial_mantenedor.xml" value="0.23448380180027173" />
+        <entry key="app/src/main/res/layout/activity_libro_mantenedor.xml" value="0.34451904296875" />
         <entry key="app/src/main/res/layout/activity_lista_reservas.xml" value="0.24114583333333334" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2263275146484373" />
+        <entry key="app/src/main/res/layout/activity_menu.xml" value="0.3098958333333333" />
+        <entry key="app/src/main/res/layout/activity_opinion_mantenedor.xml" value="0.5898885091145833" />
+        <entry key="app/src/main/res/layout/activity_pais_mantenedor.xml" value="0.32848968505859366" />
+        <entry key="app/src/main/res/layout/activity_reclamo_mantenedor.xml" value="0.32674407958984386" />
+        <entry key="app/src/main/res/layout/activity_recomendacion_mantenedor.xml" value="0.3541142781575521" />
+        <entry key="app/src/main/res/layout/activity_reserva_mantenedor.xml" value="0.3609614054361979" />
         <entry key="app/src/main/res/layout/activity_reservation_list.xml" value="0.23682861328125" />
         <entry key="app/src/main/res/layout/activity_reservations.xml" value="0.3006163051183946" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.3241256713867187" />

@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 public class UserMantenedor extends SQLiteOpenHelper {
 
     private static final int DB_VERSION = 1;
-    private static final String DB_NAME = "booksapp.db";
+    private static final String DB_NAME = "books.db";
     private final String USER_TABLE = "CREATE TABLE users (" +
             " username TEXT PRIMARY KEY," +
             " password TEXT," +
@@ -40,6 +40,15 @@ public class UserMantenedor extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("" +
                 "INSERT INTO books(title, author, editorial) VALUES('El Principito'," +
                 "'Antoine de Saint-Exupéry', 'Océano')");
+        sqLiteDatabase.execSQL("" +
+                "INSERT INTO books(title, author, editorial) VALUES('El Señor de los Anillos'," +
+                "'J. R. R. Tolkien', 'Tirant Lo Blanch')");
+        sqLiteDatabase.execSQL("" +
+                "INSERT INTO books(title, author, editorial) VALUES('Harry Potter'," +
+                "'J. K. Rowling', 'Bloomsbury')");
+        sqLiteDatabase.execSQL("" +
+                "INSERT INTO books(title, author, editorial) VALUES('Romeo y Julieta'," +
+                "'William Shakespeare', 'Juventúd')");
     }
 
     @Override

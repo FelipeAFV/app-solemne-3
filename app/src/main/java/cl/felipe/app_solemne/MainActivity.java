@@ -2,13 +2,23 @@ package cl.felipe.app_solemne;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+import cl.felipe.app_solemne.ws_cliente.IBookMantenedor;
+import cl.felipe.app_solemne.ws_cliente.UserMantenedor;
+import cl.felipe.app_solemne.ws_cliente.WSBookMantenedor;
+
+public class MainActivity extends AppCompatActivity  {
+
 
     private UserMantenedor userMantenedor = new UserMantenedor(this);
 
@@ -20,23 +30,15 @@ public class MainActivity extends AppCompatActivity {
 
     public void login(View v) {
 
+        //Intent signUpIntent = new Intent(this, MenuActivity.class);
+        //startActivity(signUpIntent);
         EditText usernameField = findViewById(R.id.txtUsername);
         EditText passwordField = findViewById(R.id.txtPassword);
-
         String username = usernameField.getText().toString();
         String password = passwordField.getText().toString();
+        userMantenedor.find(username, password);
 
-        User user = userMantenedor.findByUsername(username);
 
-        if (user != null) {
-            System.out.println(user.getUsername() + " " + user.getPassword());
-            message("Usuario existe");
-            Intent reservationsActivity = new Intent(this, ReservationsActivity.class);
-            reservationsActivity.putExtra("user", user.getUsername());
-            startActivity(reservationsActivity);
-        } else {
-            message("Usuario no existe");
-        }
 
     }
 
@@ -50,4 +52,7 @@ public class MainActivity extends AppCompatActivity {
         Toast t = Toast.makeText(this, textMessage, Toast.LENGTH_LONG);
         t.show();
     }
+
+
+
 }
